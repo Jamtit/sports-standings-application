@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import tournamentReducer from "../features/tournaments/store/tournamentSlice";
 
 export const store = configureStore({
   reducer: {
