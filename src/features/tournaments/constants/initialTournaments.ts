@@ -1,7 +1,4 @@
-import {
-  type TournamentTypes,
-  type Tournament,
-} from "../types/tournaments.types";
+import type { TournamentTypes, Tournament } from "../types/tournaments.types";
 
 export const initialTournaments: Record<TournamentTypes, Tournament> = {
   "premier-league": {
