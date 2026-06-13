@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "../styles/tournament-variables" as tournamentVars;
+
+.tournament-card {
+  -webkit-box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.7);
+  box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.7);
+
+  @each $type, $colors in tournamentVars.$tournament-colors {
+    &--#{$type} {
+      background-color: map.get($colors, "background");
+      color: map.get($colors, "text-primary");
+    }
+  }
+}

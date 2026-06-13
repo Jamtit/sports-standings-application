@@ -1,7 +1,11 @@
-import "./styles/main.scss";
+import TournamentsContainer from "../features/tournaments/components/TournamentsContainer";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <TournamentsContainer />
+    </>
+  );
 }
 
 export default App;
