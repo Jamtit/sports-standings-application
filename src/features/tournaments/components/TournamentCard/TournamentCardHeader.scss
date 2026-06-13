@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "../../../../app/styles/variables" as vars;
+@use "../../styles/tournament-variables" as tournamentVars;
+
+.tournament-card-header {
+  display: flex;
+  flex-direction: column;
+  padding-inline: map.get(vars.$spacing, "400");
+
+  border-radius: map.get(vars.$radius, "300") map.get(vars.$radius, "300") 0 0;
+
+  @each $type, $colors in tournamentVars.$tournament-colors {
+    &--#{$type} {
+      background-color: map.get($colors, "header");
+      color: map.get($colors, "text-primary");
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
