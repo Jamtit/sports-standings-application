@@ -1,0 +1,87 @@
+// Inter
+@font-face {
+  font-family: "Inter";
+  src: url("/src/assets/fonts/inter/Inter_18pt-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/src/assets/fonts/inter/Inter_18pt-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/src/assets/fonts/inter/Inter_18pt-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Montserrat
+@font-face {
+  font-family: "Montserrat";
+  src: url("/src/assets/fonts/montserrat/Montserrat-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/src/assets/fonts/montserrat/Montserrat-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Roboto
+@font-face {
+  font-family: "Roboto";
+  src: url("/src/assets/fonts/roboto/Roboto-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/src/assets/fonts/roboto/Roboto-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Bebas Neue
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("/src/assets/fonts/bebas-neue/BebasNeue-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Space Mono
+@font-face {
+  font-family: "Space Mono";
+  src: url("/src/assets/fonts/space-mono/SpaceMono-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Mono";
+  src: url("/src/assets/fonts/space-mono/SpaceMono-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
