@@ -1,0 +1,37 @@
+@use "sass:map";
+@use "../../../app//styles/mixins" as mixins;
+@use "../../../app/styles/variables" as vars;
+
+.tournaments-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: map.get(vars.$spacing, "200");
+
+  width: 100vw;
+  height: 100vh;
+
+  padding: map.get(vars.$page-padding, "sm");
+
+  @include mixins.respond-to("md") {
+    padding: map.get(vars.$page-padding, "md");
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mixins.respond-to("lg") {
+    padding: map.get(vars.$page-padding, "lg");
+  }
+
+  @include mixins.respond-to("xl") {
+    padding: map.get(vars.$page-padding, "xl");
+  }
+
+  @include mixins.respond-to("xxl") {
+    padding: map.get(vars.$page-padding, "xl");
+  }
+
+  @include mixins.respond-to-multiple("lg", "xl", "xxl") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

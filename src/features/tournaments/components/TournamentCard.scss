@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "../../../app/styles/variables" as vars;
 @use "../styles/tournament-variables" as tournamentVars;
 
 .tournament-card {
