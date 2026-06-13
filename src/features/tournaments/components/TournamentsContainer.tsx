@@ -1,6 +1,6 @@
 import { useTournamentTypes } from "../../../app/hooks";
 import type { TournamentTypes } from "../types/tournaments.types";
-import TournamentCard from "./TournamentCard";
+import TournamentCard from "./TournamentCard/TournamentCard";
 import "./TournamentsContainer.scss";
 
 function TournamentsContainer() {
