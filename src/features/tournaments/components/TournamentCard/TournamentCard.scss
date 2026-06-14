@@ -1,16 +1,37 @@
 @use "sass:map";
 @use "../../../../app/styles/variables" as vars;
+@use "../../../../app/styles/mixins" as mixins;
 @use "../../styles/tournament-variables" as tournamentVars;
 
 .tournament-card {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex-shrink: 0;
+
+  width: 100%;
+  max-width: map.get(tournamentVars.$tournament-card-sizes, "max-width-sm");
+
+  height: map.get(tournamentVars.$tournament-card-sizes, "height-sm");
 
   border-radius: map.get(vars.$radius, "300");
 
   -webkit-box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.7);
   box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.7);
+
+  @include mixins.respond-to("md") {
+    height: map.get(tournamentVars.$tournament-card-sizes, "height-md");
+    max-width: map.get(tournamentVars.$tournament-card-sizes, "max-width-md");
+  }
+
+  @include mixins.respond-to("lg") {
+    flex: 1;
+
+    width: auto;
+    max-width: none;
+
+    height: auto;
+    min-height: map.get(tournamentVars.$tournament-card-sizes, "min-height-lg");
+  }
 
   @each $type, $colors in tournamentVars.$tournament-colors {
     &--#{$type} {

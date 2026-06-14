@@ -9,7 +9,9 @@ function TournamentsContainer() {
   return (
     <section className="tournaments-container">
       {existingTournamentTypes.map((type) => (
-        <TournamentCard key={type} tournamentType={type} />
+        <div className={"tournaments-container__item"}>
+          <TournamentCard key={type} tournamentType={type} />
+        </div>
       ))}
     </section>
   );
