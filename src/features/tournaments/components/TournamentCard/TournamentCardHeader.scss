@@ -1,6 +1,8 @@
 @use "sass:map";
 @use "../../../../app/styles/variables" as vars;
+@use "../../../../app/styles/mixins" as mixins;
 @use "../../styles/tournament-variables" as tournamentVars;
+@use "../../../../app/styles/typography" as typo;
 
 .tournament-card-header {
   display: flex;
@@ -9,15 +11,21 @@
 
   border-radius: map.get(vars.$radius, "300") map.get(vars.$radius, "300") 0 0;
 
+  &__title {
+    font-size: map.get(typo.$font-size, "2xl");
+    font-weight: map.get(typo.$font-weight, "semi-bold");
+  }
+
+  @include mixins.respond-to-multiple("lg", "xl", "2xl") {
+    &__title {
+      font-size: map.get(typo.$font-size, "3xl");
+    }
+  }
+
   @each $type, $colors in tournamentVars.$tournament-colors {
     &--#{$type} {
       background-color: map.get($colors, "header");
       color: map.get($colors, "text-primary");
     }
-  }
-
-  &__title {
-    font-size: 1.5rem;
-    font-weight: bold;
   }
 }
