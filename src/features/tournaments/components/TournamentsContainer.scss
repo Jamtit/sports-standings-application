@@ -3,24 +3,64 @@
 @use "../../../app/styles/variables" as vars;
 
 .tournaments-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: center;
-  align-items: center;
-  gap: map.get(vars.$spacing, "200");
+  display: flex;
+  flex-direction: column;
 
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
 
-  padding: map.get(vars.$page-padding, "sm");
+  overflow-y: scroll;
+  overflow-x: hidden;
 
-  @include mixins.respond-to("md") {
-    padding: map.get(vars.$page-padding, "md");
-    grid-template-columns: repeat(2, 1fr);
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  background-color: red;
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 100dvh;
+    width: 100%;
+    min-height: 100dvh;
+
+    padding: map.get(vars.$spacing, "700");
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   @include mixins.respond-to("lg") {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    width: auto;
+    height: 100dvh;
+
     padding: map.get(vars.$page-padding, "lg");
+    gap: map.get(vars.$spacing, "600");
+
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+
+    &__item {
+      flex: initial;
+
+      width: auto;
+      min-height: auto;
+
+      padding: 0;
+
+      scroll-snap-align: none;
+      scroll-snap-stop: normal;
+    }
   }
 
   @include mixins.respond-to("xl") {
@@ -29,9 +69,5 @@
 
   @include mixins.respond-to("xxl") {
     padding: map.get(vars.$page-padding, "xl");
-  }
-
-  @include mixins.respond-to-multiple("lg", "xl", "xxl") {
-    grid-template-columns: repeat(3, 1fr);
   }
 }

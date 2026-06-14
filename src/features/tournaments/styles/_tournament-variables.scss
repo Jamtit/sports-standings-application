@@ -52,3 +52,11 @@ $tournament-typography: (
     ),
   ),
 );
+
+$tournament-card-sizes: (
+  "max-width-sm": 400px,
+  "max-width-md": 800px,
+  "height-sm": 85dvh,
+  "height-md": 70dvh,
+  "min-height-lg": 520px,
+);
