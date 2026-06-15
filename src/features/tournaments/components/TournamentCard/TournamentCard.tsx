@@ -3,6 +3,7 @@ import { useAppSelector } from "../../../../app/hooks";
 import "./TournamentCard.scss";
 import TournamentCardHeader from "./TournamentCardHeader";
 import TournamentCardTable from "./TournamentCardTable";
+import AddTeamForm from "../AddTeamForm";
 
 type TournamentCardProps = {
   tournamentType: TournamentTypes;
@@ -23,14 +24,20 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
         title={tournamentData.name}
         tournamentType={tournamentType}
       />
-      <TournamentCardTable
-        tournamentType={tournamentType}
-        participantRows={tournamentData.participants}
-        participantLabel={participantLabel}
-        playName={playName}
-        showDraws={tournamentData.showDraws}
-        showMatches={tournamentData.showMatches}
-      />
+      <div className="tournament-card__body">
+        <AddTeamForm
+          tournamentType={tournamentType}
+          participantLabel={participantLabel}
+        />
+        <TournamentCardTable
+          tournamentType={tournamentType}
+          participantRows={tournamentData.participants}
+          participantLabel={participantLabel}
+          playName={playName}
+          showDraws={tournamentData.showDraws}
+          showMatches={tournamentData.showMatches}
+        />
+      </div>
     </div>
   );
 }

@@ -9,8 +9,8 @@ function TournamentsContainer() {
   return (
     <section className="tournaments-container">
       {existingTournamentTypes.map((type) => (
-        <div className={"tournaments-container__item"}>
-          <TournamentCard key={type} tournamentType={type} />
+        <div className={"tournaments-container__item"} key={type}>
+          <TournamentCard tournamentType={type} />
         </div>
       ))}
     </section>
