@@ -1,7 +1,6 @@
 $tournament-colors: (
   "premier-league": (
     "background": #ffffff,
-    "background-secondary": #d6d4d4,
     "header": #37003c,
     "accent": #37003c,
     "accent-hover": #3a073f,
@@ -14,10 +13,12 @@ $tournament-colors: (
     "table-body": #ffffff,
     "table-divider": #c9c6c6,
     "table-text": #000000,
+    "input-background": #f8f7f7,
+    "input-text": #000000,
+    "input-border": #d6d4d4,
   ),
   "eurobasket": (
     "background": #002e27,
-    "background-secondary": #00201b,
     "header": #ff6900,
     "accent": #ff6900,
     "accent-hover": #fd7310,
@@ -30,6 +31,9 @@ $tournament-colors: (
     "table-body": #00201b,
     "table-divider": #002e27,
     "table-text": #ffffff,
+    "input-background": #00352d,
+    "input-text": #ffffff,
+    "input-border": #002e27,
   ),
   "wimbledon": (
     "background": #ffffff,
@@ -46,6 +50,9 @@ $tournament-colors: (
     "table-body": #ffffff,
     "table-divider": #c9c6c6,
     "table-text": #000000,
+    "input-background": #f8f7f7,
+    "input-text": #000000,
+    "input-border": #c9c6c6,
   ),
 );
 
