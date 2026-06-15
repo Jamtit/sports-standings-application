@@ -1,3 +1,5 @@
+import type { TOURNAMENT_ICONS } from "../constants/icons";
+
 export type TournamentTypes = "premier-league" | "eurobasket" | "wimbledon";
 
 export type Tournament = {
@@ -9,6 +11,7 @@ export type Tournament = {
   showMatches: boolean;
   isParticipantAPlayer: boolean;
   isAMatch: boolean;
+  iconName: keyof typeof TOURNAMENT_ICONS | "";
 };
 
 export type Match = {

@@ -24,6 +24,7 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
       <TournamentCardHeader
         title={tournamentData.name}
         tournamentType={tournamentType}
+        icon={tournamentData.iconName}
       />
       <div className="tournament-card__body">
         <AddTeamForm
