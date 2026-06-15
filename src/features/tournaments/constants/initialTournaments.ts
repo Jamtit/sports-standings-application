@@ -6,17 +6,23 @@ export const initialTournaments: Record<TournamentTypes, Tournament> = {
     name: "Premier League",
     participants: [],
     matches: [],
+    showDraws: true,
+    showMatches: true,
   },
   eurobasket: {
     type: "eurobasket",
     name: "EuroBasket",
     participants: [],
     matches: [],
+    showDraws: true,
+    showMatches: false,
   },
   wimbledon: {
     type: "wimbledon",
     name: "Wimbledon",
     participants: [],
     matches: [],
+    showDraws: false,
+    showMatches: true,
   },
 };
