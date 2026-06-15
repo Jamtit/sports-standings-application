@@ -27,7 +27,7 @@
 
     &__choices {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-template-areas: "option-a option-b" "input-a input-b";
       gap: map.get(vars.$spacing, "200");
 
@@ -72,7 +72,7 @@
 
         border-radius: map.get(vars.$radius, "100");
 
-        font-size: map.get(typo.$font-size, "base");
+        font-size: map.get(typo.$font-size, "md");
 
         @each $type, $colors in tournamentVars.$tournament-colors {
           &--#{$type} {
