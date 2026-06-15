@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import "./Button.scss";
 
 type ButtonVariants = "primary" | "accent";
 type ButtonSize = "small" | "medium" | "large" | "full";

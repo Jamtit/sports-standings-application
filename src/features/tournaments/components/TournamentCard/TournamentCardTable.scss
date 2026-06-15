@@ -1,0 +1,76 @@
+@use "sass:map";
+@use "../../../../app/styles/typography" as typo;
+@use "../../../../app/styles/variables" as vars;
+@use "../../styles/tournament-variables" as tournamentVars;
+
+.tournament-card-table {
+  width: 100%;
+  overflow-x: hidden;
+  padding-inline: map.get(vars.$spacing, "500");
+
+  &__table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: map.get(typo.$font-size, "md");
+
+    th,
+    td {
+      padding: map.get(vars.$spacing, "200");
+      text-align: center;
+    }
+
+    th:first-child,
+    td:first-child:not(&__body__empty) {
+      width: 45%;
+      text-align: left;
+    }
+
+    th {
+      font-weight: map.get(typo.$font-weight, "semi-bold");
+    }
+
+    &__header {
+      @each $type, $colors in tournamentVars.$tournament-colors {
+        &--#{$type} {
+          th {
+            background-color: map.get($colors, "table-header");
+            color: map.get($colors, "table-text");
+            border-bottom: 1px solid map.get($colors, "table-divider");
+          }
+        }
+      }
+    }
+
+    &__body {
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      @each $type, $colors in tournamentVars.$tournament-colors {
+        &--#{$type} {
+          td {
+            background-color: map.get($colors, "table-body");
+            color: map.get($colors, "table-text");
+            border-bottom: 1px solid map.get($colors, "table-divider");
+          }
+        }
+      }
+
+      &__empty {
+        padding: map.get(vars.$spacing, "300");
+
+        div {
+          text-align: center;
+        }
+
+        @each $type, $colors in tournamentVars.$tournament-colors {
+          &--#{$type} {
+            background-color: map.get($colors, "table-body");
+            color: map.get($colors, "table-text");
+          }
+        }
+      }
+    }
+  }
+}
