@@ -6,10 +6,16 @@
 
 .tournament-card-header {
   display: flex;
-  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
   padding-inline: map.get(vars.$spacing, "400");
 
   border-radius: map.get(vars.$radius, "300") map.get(vars.$radius, "300") 0 0;
+
+  &__icon {
+    margin-right: map.get(vars.$spacing, "200");
+  }
 
   &__title {
     font-size: map.get(typo.$font-size, "2xl");
