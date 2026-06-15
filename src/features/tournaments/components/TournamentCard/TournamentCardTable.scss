@@ -6,7 +6,6 @@
 .tournament-card-table {
   width: 100%;
   overflow-x: hidden;
-  padding-inline: map.get(vars.$spacing, "500");
 
   &__table {
     table-layout: fixed;

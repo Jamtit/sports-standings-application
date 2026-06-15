@@ -21,6 +21,10 @@
   @include mixins.respond-to("md") {
     height: map.get(tournamentVars.$tournament-card-sizes, "height-md");
     max-width: map.get(tournamentVars.$tournament-card-sizes, "max-width-md");
+
+    &__body {
+      padding-inline: map.get(vars.$spacing, "500");
+    }
   }
 
   @include mixins.respond-to("lg") {
@@ -31,6 +35,12 @@
 
     height: auto;
     min-height: map.get(tournamentVars.$tournament-card-sizes, "min-height-lg");
+  }
+
+  @include mixins.respond-to-multiple("lg", "xl", "2xl") {
+    &__body {
+      padding-inline: map.get(vars.$spacing, "700");
+    }
   }
 
   @each $type, $colors in tournamentVars.$tournament-colors {
@@ -44,5 +54,10 @@
     &--#{$type} {
       font-family: map.get($typography, "font-family");
     }
+  }
+
+  &__body {
+    padding-inline: map.get(vars.$spacing, "400");
+    padding-block: map.get(vars.$spacing, "200");
   }
 }
