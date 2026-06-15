@@ -1,0 +1,63 @@
+@use "sass:map";
+@use "../../app/styles/variables" as vars;
+@use "../../app/styles/typography" as typo;
+
+.select {
+  display: grid;
+  gap: map.get(vars.$spacing, "200");
+  width: 100%;
+
+  &__label {
+    font-size: map.get(typo.$font-size, "md");
+    font-weight: map.get(typo.$font-weight, "semi-bold");
+  }
+
+  &__field {
+    width: 100%;
+    padding: map.get(vars.$spacing, "100");
+
+    border-radius: map.get(vars.$radius, "100");
+    outline: none;
+    border: none;
+
+    font-family: inherit;
+    font-size: map.get(typo.$font-size, "base");
+    font-weight: map.get(typo.$font-weight, "semi-bold");
+
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    &--small {
+      min-height: map.get(vars.$spacing, "200");
+      padding: map.get(vars.$spacing, "100") map.get(vars.$spacing, "200");
+      font-size: map.get(typo.$font-size, "sm");
+    }
+
+    &--medium {
+      min-height: map.get(vars.$spacing, "300");
+      padding: map.get(vars.$spacing, "100") map.get(vars.$spacing, "200");
+      font-size: map.get(typo.$font-size, "md");
+    }
+
+    &--large {
+      min-height: map.get(vars.$spacing, "900");
+      padding: map.get(vars.$spacing, "300") map.get(vars.$spacing, "300");
+      font-size: map.get(typo.$font-size, "lg");
+    }
+
+    &--full {
+      width: 100%;
+      min-height: map.get(vars.$spacing, "400");
+      padding: map.get(vars.$spacing, "300") map.get(vars.$spacing, "300");
+      font-size: map.get(typo.$font-size, "md");
+    }
+  }
+}

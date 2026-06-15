@@ -10,3 +10,19 @@ export const useTournamentTypes = () => {
     (state) => Object.keys(state.tournaments.tournaments) as TournamentTypes[],
   );
 };
+
+export const useTournamentParticipantsOptions = (
+  tournamentType: TournamentTypes,
+) => {
+  const fullParticipantData = useAppSelector(
+    (state) => state.tournaments.tournaments[tournamentType].participants,
+  );
+
+  const participantsForSelection: { label: string; value: string }[] =
+    fullParticipantData.map((participant) => ({
+      label: participant.name,
+      value: participant.id,
+    }));
+
+  return participantsForSelection;
+};

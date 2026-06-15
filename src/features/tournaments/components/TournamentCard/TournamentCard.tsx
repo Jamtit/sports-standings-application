@@ -4,6 +4,7 @@ import "./TournamentCard.scss";
 import TournamentCardHeader from "./TournamentCardHeader";
 import TournamentCardTable from "./TournamentCardTable";
 import AddTeamForm from "../AddTeamForm";
+import AddScoreForm from "../AddScoreForm";
 
 type TournamentCardProps = {
   tournamentType: TournamentTypes;
@@ -28,6 +29,11 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
         <AddTeamForm
           tournamentType={tournamentType}
           participantLabel={participantLabel}
+        />
+        <AddScoreForm
+          tournamentType={tournamentType}
+          participantLabel={participantLabel}
+          participants={tournamentData.participants}
         />
         <TournamentCardTable
           tournamentType={tournamentType}
