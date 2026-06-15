@@ -1,8 +1,10 @@
 import "./TournamentCardHeader.scss";
+import Icon from "../../../../shared/components/Icon";
+import type { TOURNAMENT_ICONS } from "../../constants/icons";
 
 type TournamentCardHeaderProps = {
   title: string;
-  icon?: React.ReactNode;
+  icon?: keyof typeof TOURNAMENT_ICONS | "";
   tournamentType: string;
 };
 
@@ -15,7 +17,9 @@ function TournamentCardHeader({
     <div
       className={`tournament-card-header tournament-card-header--${tournamentType}`}
     >
-      {icon && <span className="tournament-card-header__icon">{icon}</span>}
+      {icon && (
+        <Icon className="tournament-card-header__icon" name={icon} size={30} />
+      )}
       <h3 className="tournament-card-header__title">{title}</h3>
     </div>
   );
