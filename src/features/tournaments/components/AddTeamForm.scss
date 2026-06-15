@@ -7,6 +7,8 @@
   margin-block: map.get(vars.$spacing, "500");
   padding: map.get(vars.$spacing, "500");
 
+  border-radius: map.get(vars.$radius, "200");
+
   @each $type, $colors in tournamentVars.$tournament-colors {
     &--#{$type} {
       background-color: map.get($colors, "input-background");
@@ -20,7 +22,7 @@
 
   &__input {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-block: map.get(vars.$spacing, "200");
 
