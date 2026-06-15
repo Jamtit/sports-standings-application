@@ -7,6 +7,8 @@ export type Tournament = {
   matches: Match[];
   showDraws: boolean;
   showMatches: boolean;
+  isParticipantAPlayer: boolean;
+  isAMatch: boolean;
 };
 
 export type Match = {
