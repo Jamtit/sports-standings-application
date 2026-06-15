@@ -17,8 +17,8 @@ type TournamentCardTableProps = {
 function TournamentCardTable({
   tournamentType,
   participantRows,
-  participantLabel,
   playName,
+  participantLabel,
   showDraws = true,
   showMatches = true,
   tableLabel,

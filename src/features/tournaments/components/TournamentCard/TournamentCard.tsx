@@ -14,8 +14,8 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
   );
 
   const participantLabel: "Player" | "Team" =
-    tournamentType === "wimbledon" ? "Player" : "Team";
-  const playName: "M" | "P" = tournamentType === "wimbledon" ? "M" : "P";
+    tournamentData.isParticipantAPlayer ? "Player" : "Team";
+  const playName: "M" | "P" = tournamentData.isAMatch ? "M" : "P";
 
   return (
     <div className={`tournament-card tournament-card--${tournamentType}`}>
