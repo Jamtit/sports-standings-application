@@ -5,6 +5,8 @@ export type Tournament = {
   name: string;
   participants: Participant[];
   matches: Match[];
+  showDraws: boolean;
+  showMatches: boolean;
 };
 
 export type Match = {
@@ -19,6 +21,7 @@ export type Participant = {
   id: string;
   name: string;
   country?: string;
+  stats: ParticipantStats;
 };
 
 export type ParticipantStats = {
