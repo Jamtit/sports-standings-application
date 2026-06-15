@@ -59,7 +59,7 @@ function AddScoreForm({
           />
           <input
             className={`add-score__container__choices__input-b add-score__container__choices__input-b--${tournamentType}`}
-            placeholder="Home Score"
+            placeholder="Away Score"
           ></input>
         </div>
         <Button
