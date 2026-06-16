@@ -22,6 +22,7 @@ import {
   shouldShowParticipantNameInput,
   usesCountries,
 } from "../../utils/countryMode";
+import { TOURNAMENT_STRINGS } from "../../constants/strings";
 
 type AddTeamFormProps = {
   tournamentType: TournamentTypes;
@@ -54,9 +55,11 @@ function AddTeamForm({
   const isNationalTeam = isNationalTeamMode(countryMode);
 
   const formattedName = formatParticipantName(participantName);
+
   const participantNameToSubmit = isNationalTeam
     ? (selectedCountry?.name ?? "")
     : formattedName;
+
   const participantNameExists = participants.some(
     (participant) =>
       participant.stats.name.toLowerCase() ===
@@ -65,10 +68,12 @@ function AddTeamForm({
   const isCountryMissing = showCountrySelect && !countryCode;
 
   const isParticipantNameMissing = !participantNameToSubmit;
+
   const isSubmitDisabled =
     isParticipantNameMissing || participantNameExists || isCountryMissing;
+
   const duplicateEntityLabel = isNationalTeam
-    ? "country"
+    ? TOURNAMENT_STRINGS.addTeamForm.placeholders.country
     : participantLabel.toLowerCase();
 
   const handleTeamSubmit: React.SubmitEventHandler<HTMLFormElement> = (
@@ -97,7 +102,9 @@ function AddTeamForm({
   };
   return (
     <div className={`add-team add-team--${tournamentType}`}>
-      <span className="add-team__label">Add {participantLabel}</span>
+      <span className="add-team__label">
+        {TOURNAMENT_STRINGS.addTeamForm.title(participantLabel)}
+      </span>
       <div>
         <form
           onSubmit={handleTeamSubmit}
@@ -108,7 +115,9 @@ function AddTeamForm({
           {showParticipantNameInput && (
             <input
               className={`add-team__input__field add-team__input__field--${tournamentType}`}
-              placeholder={`${participantLabel} Name`}
+              placeholder={TOURNAMENT_STRINGS.addTeamForm.placeholders.participantName(
+                participantLabel,
+              )}
               value={participantName}
               onChange={(event) => setParticipantName(event.target.value)}
             ></input>
@@ -117,7 +126,7 @@ function AddTeamForm({
             <Select
               id={`${tournamentType}-country`}
               selectSize="medium"
-              placeholder="Country"
+              placeholder={TOURNAMENT_STRINGS.addTeamForm.placeholders.country}
               options={countryOptions}
               value={countryCode}
               onChange={(event) => {
@@ -137,12 +146,14 @@ function AddTeamForm({
             type="submit"
             disabled={isSubmitDisabled}
           >
-            Add
+            {TOURNAMENT_STRINGS.addTeamForm.actions.submit}
           </Button>
         </form>
         {participantNameExists && (
           <p className="add-team__error">
-            This {duplicateEntityLabel} is already added.
+            {TOURNAMENT_STRINGS.addTeamForm.messages.alreadyAdded(
+              duplicateEntityLabel,
+            )}
           </p>
         )}
       </div>

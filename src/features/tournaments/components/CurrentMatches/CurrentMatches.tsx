@@ -1,6 +1,7 @@
 import { useRecentTournamentMatches } from "../../../../app/hooks";
 import FlagIcon from "../../../../shared/components/FlagIcon";
 import { getCountryName } from "../../../../shared/constants/countries";
+import { TOURNAMENT_STRINGS } from "../../constants/strings";
 import type {
   TournamentCountryMode,
   TournamentTypes,
@@ -39,7 +40,9 @@ function CurrentMatches({ countryMode, tournamentType }: CurrentMatchesProps) {
               )}
               {match.participantA.stats.name}
             </span>
-            <span className="current-matches__versus">vs</span>
+            <span className="current-matches__versus">
+              {TOURNAMENT_STRINGS.currentMatches.versus}
+            </span>
             <span className="current-matches__participant">
               {showParticipantFlags && match.participantB.country && (
                 <FlagIcon
