@@ -13,14 +13,22 @@ import { addMatch } from "../store/tournamentSlice";
 type AddScoreFormProps = {
   tournamentType: TournamentTypes;
   participantLabel: string;
+  showForm: (value: boolean) => void;
+  showActionForms: boolean;
 };
 
-function AddScoreForm({ tournamentType, participantLabel }: AddScoreFormProps) {
+function AddScoreForm({
+  tournamentType,
+  participantLabel,
+  showActionForms,
+  showForm,
+}: AddScoreFormProps) {
   const [participantAId, setParticipantAId] = useState<string>("");
   const [participantBId, setParticipantBId] = useState<string>("");
   const [scoreA, setScoreA] = useState<string>("");
   const [scoreB, setScoreB] = useState<string>("");
   const dispatch = useAppDispatch();
+
   const participants = useTournamentParticipants(tournamentType);
   const availableOpponents = useAvailableOpponents(
     tournamentType,
@@ -36,9 +44,11 @@ function AddScoreForm({ tournamentType, participantLabel }: AddScoreFormProps) {
     label: participant.stats.name,
     value: participant.id,
   }));
+
   const isSelectedOpponentAvailable = availableOpponents.some(
     (participant) => participant.id === participantBId,
   );
+
   const selectedParticipantBId = isSelectedOpponentAvailable
     ? participantBId
     : "";
@@ -52,6 +62,7 @@ function AddScoreForm({ tournamentType, participantLabel }: AddScoreFormProps) {
     Number.isInteger(parsedScoreB) &&
     parsedScoreA >= 0 &&
     parsedScoreB >= 0;
+
   const isSubmitDisabled =
     !participantAId || !selectedParticipantBId || !areScoresValid;
 
@@ -77,6 +88,9 @@ function AddScoreForm({ tournamentType, participantLabel }: AddScoreFormProps) {
       }),
     );
 
+    if (showActionForms) {
+      showForm(false);
+    }
     setParticipantAId("");
     setParticipantBId("");
     setScoreA("");

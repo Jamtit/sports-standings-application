@@ -44,6 +44,7 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
             tournamentType={tournamentType}
             participantLabel={participantLabel}
             showForm={setShowAddTeamForm}
+            showActionForms={tournamentData.showActionForms}
           />
         )}
 
@@ -51,6 +52,8 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
           <AddScoreForm
             tournamentType={tournamentType}
             participantLabel={participantLabel}
+            showForm={setShowAddScoreForm}
+            showActionForms={tournamentData.showActionForms}
           />
         )}
 
