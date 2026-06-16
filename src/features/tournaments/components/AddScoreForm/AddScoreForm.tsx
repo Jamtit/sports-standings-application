@@ -1,14 +1,14 @@
-import type { TournamentTypes } from "../types/tournaments.types";
-import Button from "../../../shared/components/Button";
-import Select from "../../../shared/components/Select";
+import type { TournamentTypes } from "../../types/tournaments.types";
+import Button from "../../../../shared/components/Button";
+import Select from "../../../../shared/components/Select";
 import "./AddScoreForm.scss";
 import { useState } from "react";
 import {
   useAppDispatch,
   useAvailableOpponents,
   useTournamentParticipants,
-} from "../../../app/hooks";
-import { addMatch } from "../store/tournamentSlice";
+} from "../../../../app/hooks";
+import { addMatch } from "../../store/tournamentSlice";
 
 type AddScoreFormProps = {
   tournamentType: TournamentTypes;
