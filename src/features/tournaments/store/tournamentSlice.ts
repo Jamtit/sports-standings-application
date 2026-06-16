@@ -6,7 +6,10 @@ import type {
   TournamentTypes,
   ParticipantStats,
 } from "../types/tournaments.types";
-import type { CountryCode } from "../../../shared/constants/countries";
+import {
+  isCountryCode,
+  type CountryCode,
+} from "../../../shared/constants/countries";
 
 export type TournamentState = {
   tournaments: typeof initialTournaments;
@@ -99,6 +102,11 @@ const tournamentSlice = createSlice({
     ) => {
       const { tournamentType, participantName, country } = action.payload;
       const tournament = state.tournaments[tournamentType];
+
+      if (country && !isCountryCode(country)) {
+        return;
+      }
+
       const participantNameAlreadyExists = tournament.participants.some(
         (participant) =>
           normalizeName(participant.stats.name) === normalizeName(participantName),

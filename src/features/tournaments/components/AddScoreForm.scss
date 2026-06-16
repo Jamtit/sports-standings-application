@@ -28,18 +28,11 @@
 
     &__choices {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-template-areas:
-        "option-a"
-        "input-a"
-        "option-b"
-        "input-b";
+        "option-a option-b"
+        "input-a input-b";
       gap: map.get(vars.$spacing, "200");
-
-      @include mixins.respond-to("md") {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-areas: "option-a option-b" "input-a input-b";
-      }
 
       &__option-a {
         grid-area: option-a;
