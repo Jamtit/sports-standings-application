@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../../app//styles/mixins" as mixins;
-@use "../../../app/styles/variables" as vars;
+@use "../../../../app/styles/mixins" as mixins;
+@use "../../../../app/styles/variables" as vars;
 
 .tournaments-container {
   display: flex;

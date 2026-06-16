@@ -1,7 +1,7 @@
 @use "sass:map";
-@use "../../../app/styles/variables" as vars;
-@use "../styles/tournament-variables" as tournamentVars;
-@use "../../../app/styles/typography" as typo;
+@use "../../../../app/styles/variables" as vars;
+@use "../../styles/tournament-variables" as tournamentVars;
+@use "../../../../app/styles/typography" as typo;
 
 .add-team {
   margin-block: map.get(vars.$spacing, "500");
