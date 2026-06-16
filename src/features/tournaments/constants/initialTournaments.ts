@@ -30,6 +30,7 @@ export const initialTournaments: Record<TournamentTypes, Tournament> = {
     isParticipantAPlayer: false,
     isAMatch: true,
     iconName: "basketball",
+    tableLabel: "Score Table:",
   },
   wimbledon: {
     type: "wimbledon",
