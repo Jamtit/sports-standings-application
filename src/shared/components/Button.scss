@@ -3,7 +3,7 @@
 @use "../../app/styles/typography" as typo;
 
 .button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: map.get(vars.$spacing, "200");
@@ -12,7 +12,7 @@
   border-radius: map.get(vars.$radius, "200");
 
   font-family: inherit;
-  font-weight: map.get(typo.$font-weight, "semi-bold");
+  font-weight: map.get(typo.$font-weight, "medium");
   line-height: map.get(typo.$line-height, "button");
 
   cursor: pointer;

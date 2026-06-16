@@ -12,6 +12,7 @@ export const initialTournaments: Record<TournamentTypes, Tournament> = {
     isParticipantAPlayer: false,
     isAMatch: true,
     iconName: "",
+    showActionForms: true,
   },
   eurobasket: {
     type: "eurobasket",
@@ -21,6 +22,7 @@ export const initialTournaments: Record<TournamentTypes, Tournament> = {
     showDraws: true,
     showMatches: false,
     showWinLossIcons: false,
+    showActionForms: false,
     isParticipantAPlayer: false,
     isAMatch: true,
     iconName: "basketball",
@@ -33,6 +35,7 @@ export const initialTournaments: Record<TournamentTypes, Tournament> = {
     showDraws: false,
     showMatches: true,
     showWinLossIcons: true,
+    showActionForms: false,
     isParticipantAPlayer: true,
     isAMatch: false,
     iconName: "tennis",

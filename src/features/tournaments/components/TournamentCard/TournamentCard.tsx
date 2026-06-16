@@ -5,14 +5,26 @@ import TournamentCardHeader from "./TournamentCardHeader";
 import TournamentCardTable from "./TournamentCardTable";
 import AddTeamForm from "../AddTeamForm";
 import AddScoreForm from "../AddScoreForm";
+import { useState } from "react";
+import Button from "../../../../shared/components/Button";
+import { PlusIcon } from "../../../../assets/icons";
 
 type TournamentCardProps = {
   tournamentType: TournamentTypes;
 };
 
+const MIN_PARTICIPANT_TO_ADD_SCORE = 2;
+
 function TournamentCard({ tournamentType }: TournamentCardProps) {
   const tournamentData = useAppSelector(
     (state) => state.tournaments.tournaments[tournamentType],
+  );
+
+  const [showAddTeamForm, setShowAddTeamForm] = useState<boolean>(
+    tournamentData.showActionForms,
+  );
+  const [showAddScoreForm, setShowAddScoreForm] = useState<boolean>(
+    tournamentData.showActionForms,
   );
 
   const participantLabel: "Player" | "Team" =
@@ -27,15 +39,52 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
         icon={tournamentData.iconName}
       />
       <div className="tournament-card__body">
-        <AddTeamForm
-          tournamentType={tournamentType}
-          participantLabel={participantLabel}
-        />
-        <AddScoreForm
-          tournamentType={tournamentType}
-          participantLabel={participantLabel}
-          participants={tournamentData.participants}
-        />
+        {showAddTeamForm && (
+          <AddTeamForm
+            tournamentType={tournamentType}
+            participantLabel={participantLabel}
+          />
+        )}
+
+        {showAddScoreForm && (
+          <AddScoreForm
+            tournamentType={tournamentType}
+            participantLabel={participantLabel}
+            participants={tournamentData.participants}
+          />
+        )}
+
+        <div className="tournament-card__body__no-forms">
+          {!showAddTeamForm && (
+            <Button
+              className={`tournament-card__body__no-forms__add-participant tournament-card__body__no-forms__add-participant--${tournamentType}`}
+              onClick={() => setShowAddTeamForm(true)}
+            >
+              <PlusIcon
+                className="tournament-card__body__no-forms__add-participant__icon"
+                size={14}
+              />
+              Add {participantLabel}
+            </Button>
+          )}
+          {!showAddScoreForm && (
+            <Button
+              className={`tournament-card__body__no-forms__add-score tournament-card__body__no-forms__add-score--${tournamentType}`}
+              onClick={() => setShowAddScoreForm(true)}
+              disabled={
+                tournamentData.participants.length <
+                MIN_PARTICIPANT_TO_ADD_SCORE
+              }
+            >
+              <PlusIcon
+                className="tournament-card__body__no-forms__add-score__icon"
+                size={14}
+              />
+              Add Score
+            </Button>
+          )}
+        </div>
+
         <TournamentCardTable
           tournamentType={tournamentType}
           participantRows={tournamentData.participants}
