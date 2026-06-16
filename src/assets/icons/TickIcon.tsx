@@ -14,9 +14,9 @@ export function TickIcon({ className, size = 16 }: IconProps) {
       <path
         d="M3.5 8.5L6.5 11.5L12.5 4.5"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
