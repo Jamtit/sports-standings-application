@@ -1,22 +1,19 @@
-import type { Participant, TournamentTypes } from "../types/tournaments.types";
+import type { TournamentTypes } from "../types/tournaments.types";
 import Button from "../../../shared/components/Button";
 import Select from "../../../shared/components/Select";
 import "./AddScoreForm.scss";
 import { useState } from "react";
+import { useTournamentParticipants } from "../../../app/hooks";
 
 type AddScoreFormProps = {
   tournamentType: TournamentTypes;
   participantLabel: string;
-  participants: Participant[];
 };
 
-function AddScoreForm({
-  tournamentType,
-  participantLabel,
-  participants,
-}: AddScoreFormProps) {
+function AddScoreForm({ tournamentType, participantLabel }: AddScoreFormProps) {
   const [participantAId, setParticipantAId] = useState<string>("");
   const [participantBId, setParticipantBId] = useState<string>("");
+  const participants = useTournamentParticipants(tournamentType);
 
   const participantOptions = participants.map((participant) => ({
     label: participant.stats.name,
