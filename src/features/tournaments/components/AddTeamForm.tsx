@@ -8,6 +8,7 @@ import { useState } from "react";
 import { formatParticipantName } from "../../../shared/utils/utils";
 import {
   COUNTRIES,
+  isCountryCode,
   type CountryCode,
 } from "../../../shared/constants/countries";
 
@@ -87,9 +88,13 @@ function AddTeamForm({
               placeholder="Country"
               options={countryOptions}
               value={countryCode}
-              onChange={(event) =>
-                setCountryCode(event.target.value as CountryCode)
-              }
+              onChange={(event) => {
+                const nextCountryCode = event.target.value;
+
+                setCountryCode(
+                  isCountryCode(nextCountryCode) ? nextCountryCode : "",
+                );
+              }}
               className={`add-team__input__country add-team__input__country--${tournamentType}`}
             />
           )}
