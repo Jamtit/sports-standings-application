@@ -45,6 +45,7 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
             participantLabel={participantLabel}
             showForm={setShowAddTeamForm}
             showActionForms={tournamentData.showActionForms}
+            showCountryFlags={tournamentData.showCountryFlags}
           />
         )}
 
