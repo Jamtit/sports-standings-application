@@ -5,12 +5,12 @@
 
 .tournament-card-table {
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
+  margin-bottom: map.get(vars.$spacing, "800");
 
   &__table {
     table-layout: fixed;
     width: 100%;
-    min-width: 360px;
     border-collapse: collapse;
     font-size: map.get(typo.$font-size, "md");
 
@@ -24,7 +24,6 @@
     td:first-child:not(&__body__empty) {
       width: 45%;
       text-align: left;
-      overflow-wrap: anywhere;
     }
 
     th {
@@ -58,17 +57,25 @@
         }
       }
 
-      &__tick-icon {
-        color: green;
+      &__win-column {
+        &__tick-icon {
+          color: green;
+          margin-left: map.get(vars.$spacing, "100");
+        }
       }
 
-      &__x-icon {
-        color: red;
+      &__loss-column {
+        &__x-icon {
+          color: red;
+          margin-left: map.get(vars.$spacing, "100");
+        }
       }
 
-      &__tick-icon,
-      &__x-icon {
-        margin-left: map.get(vars.$spacing, "100");
+      &__win-column,
+      &__loss-column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       &__empty {

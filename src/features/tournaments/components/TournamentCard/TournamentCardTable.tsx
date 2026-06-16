@@ -59,21 +59,21 @@ function TournamentCardTable({
               <tr key={participant.id}>
                 <td>{participant.stats.name}</td>
                 {showMatches && <td>{participant.stats.matchesPlayed}</td>}
-                <td>
+                <td className="tournamet-card-table__table__body__win-column">
                   {participant.stats.wins}
                   {showWinLossIcon && (
                     <TickIcon
-                      className="tournament-card-table__table__body__tick-icon"
+                      className="tournament-card-table__table__body__win-column__tick-icon"
                       size={16}
                     />
                   )}
                 </td>
                 {showDraws && <td>{participant.stats.draws}</td>}
-                <td>
+                <td className="tournament-card-table__table__body__loss-column">
                   {participant.stats.losses}
                   {showWinLossIcon && (
                     <XIcon
-                      className="tournament-card-table__table__body__x-icon"
+                      className="tournament-card-table__table__body__loss-column__x-icon"
                       size={16}
                     />
                   )}
