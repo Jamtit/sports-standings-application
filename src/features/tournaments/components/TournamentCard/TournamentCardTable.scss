@@ -8,6 +8,22 @@
   overflow: hidden;
   margin-bottom: map.get(vars.$spacing, "800");
 
+  &__participant {
+    display: inline-flex;
+    align-items: center;
+    gap: map.get(vars.$spacing, "200");
+    min-width: 0;
+
+    &__flag {
+      flex: 0 0 auto;
+    }
+
+    &__name {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+
   &__table {
     table-layout: fixed;
     width: 100%;

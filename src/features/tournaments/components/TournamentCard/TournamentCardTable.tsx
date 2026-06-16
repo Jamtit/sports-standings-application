@@ -1,6 +1,8 @@
 import { memo } from "react";
 import { useSortedTournamentParticipants } from "../../../../app/hooks";
 import { TickIcon, XIcon } from "../../../../assets/icons";
+import FlagIcon from "../../../../shared/components/FlagIcon";
+import { getCountryName } from "../../../../shared/constants/countries";
 import type { TournamentTypes } from "../../types/tournaments.types";
 import "./TournamentCardTable.scss";
 
@@ -11,6 +13,7 @@ type TournamentCardTableProps = {
   showDraws?: boolean;
   showMatches?: boolean;
   showWinLossIcon?: boolean;
+  showCountryFlags?: boolean;
   tableLabel?: string;
 };
 
@@ -21,6 +24,7 @@ function TournamentCardTable({
   showDraws = true,
   showMatches = true,
   showWinLossIcon = false,
+  showCountryFlags = false,
   tableLabel,
 }: TournamentCardTableProps) {
   const columnCount: number = 4 + Number(showDraws) + Number(showMatches);
@@ -57,7 +61,20 @@ function TournamentCardTable({
           ) : (
             participantRows.map((participant) => (
               <tr key={participant.id}>
-                <td>{participant.stats.name}</td>
+                <td>
+                  <span className="tournament-card-table__participant">
+                    {showCountryFlags && participant.country && (
+                      <FlagIcon
+                        className="tournament-card-table__participant__flag"
+                        code={participant.country}
+                        label={getCountryName(participant.country)}
+                      />
+                    )}
+                    <span className="tournament-card-table__participant__name">
+                      {participant.stats.name}
+                    </span>
+                  </span>
+                </td>
                 {showMatches && <td>{participant.stats.matchesPlayed}</td>}
                 <td className="tournamet-card-table__table__body__win-column">
                   {participant.stats.wins}
