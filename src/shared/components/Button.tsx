@@ -8,14 +8,12 @@ type ButtonProps = {
   children: ReactNode;
   variant?: ButtonVariants;
   size?: ButtonSize;
-  leftIcon?: ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 function Button({
   children,
   variant = "primary",
   size = "medium",
-  leftIcon,
   className = "",
   type = "button",
   ...props
@@ -26,8 +24,7 @@ function Button({
       type={type}
       {...props}
     >
-      {leftIcon && <span className="button__icon">{leftIcon}</span>}
-      <span className="button__label">{children}</span>
+      <div className="button__label">{children}</div>
     </button>
   );
 }
