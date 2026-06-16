@@ -39,7 +39,9 @@ function TournamentCardTable({
 
   return (
     <div className="tournament-card-table">
-      {tableLabel && <h4>{tableLabel}</h4>}
+      {tableLabel && (
+        <h4 className="tournament-card-table__label">{tableLabel}</h4>
+      )}
       <table className="tournament-card-table__table">
         <thead
           className={`tournament-card-table__table__header tournament-card-table__table__header--${tournamentType}`}

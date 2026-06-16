@@ -11,6 +11,13 @@
   overflow-x: hidden;
   margin-bottom: 0;
 
+  &__label {
+    margin: 0;
+    margin-bottom: map.get(vars.$spacing, "300");
+    font-size: map.get(typo.$font-size, "md");
+    font-weight: map.get(typo.$font-weight, "bold");
+  }
+
   &__participant {
     display: inline-flex;
     align-items: center;

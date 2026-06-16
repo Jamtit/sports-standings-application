@@ -10,6 +10,7 @@ export type Tournament = {
   participants: Participant[];
   matches: Match[];
   iconName: keyof typeof TOURNAMENT_ICONS | "";
+  tableLabel?: string;
   showDraws: boolean;
   showMatches: boolean;
   showWinLossIcons: boolean;
