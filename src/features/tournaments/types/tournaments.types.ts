@@ -14,6 +14,7 @@ export type Tournament = {
   showMatches: boolean;
   showWinLossIcons: boolean;
   showActionForms: boolean;
+  showRecentMatches: boolean;
   countryMode: TournamentCountryMode;
   isParticipantAPlayer: boolean;
   isAMatch: boolean;
