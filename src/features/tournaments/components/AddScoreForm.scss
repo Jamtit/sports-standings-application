@@ -2,6 +2,7 @@
 @use "../../../app/styles/variables" as vars;
 @use "../styles/tournament-variables" as tournamentVars;
 @use "../../../app/styles/typography" as typo;
+@use "../../../app/styles/mixins" as mixins;
 
 .add-score {
   margin-block: map.get(vars.$spacing, "200");
@@ -27,9 +28,18 @@
 
     &__choices {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-areas: "option-a option-b" "input-a input-b";
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "option-a"
+        "input-a"
+        "option-b"
+        "input-b";
       gap: map.get(vars.$spacing, "200");
+
+      @include mixins.respond-to("md") {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas: "option-a option-b" "input-a input-b";
+      }
 
       &__option-a {
         grid-area: option-a;
@@ -82,6 +92,12 @@
           }
         }
       }
+    }
+
+    .add-score__message {
+      margin: 0;
+      font-size: map.get(typo.$font-size, "sm");
+      line-height: map.get(typo.$line-height, "normal");
     }
 
     &__button {

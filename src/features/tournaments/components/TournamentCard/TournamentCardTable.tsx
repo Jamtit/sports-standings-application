@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { useTournamentParticipants } from "../../../../app/hooks";
+import { useSortedTournamentParticipants } from "../../../../app/hooks";
 import { TickIcon, XIcon } from "../../../../assets/icons";
 import type { TournamentTypes } from "../../types/tournaments.types";
 import "./TournamentCardTable.scss";
@@ -24,7 +24,7 @@ function TournamentCardTable({
   tableLabel,
 }: TournamentCardTableProps) {
   const columnCount: number = 4 + Number(showDraws) + Number(showMatches);
-  const participantRows = useTournamentParticipants(tournamentType);
+  const participantRows = useSortedTournamentParticipants(tournamentType);
 
   return (
     <div className="tournament-card-table">

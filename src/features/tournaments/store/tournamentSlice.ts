@@ -7,7 +7,7 @@ import type {
   ParticipantStats,
 } from "../types/tournaments.types";
 
-type TournamentState = {
+export type TournamentState = {
   tournaments: typeof initialTournaments;
 };
 
@@ -35,6 +35,55 @@ function participantStatsBuilder({
   };
 }
 
+function matchKey(participantAId: string, participantBId: string): string {
+  return [participantAId, participantBId].sort().join(":");
+}
+
+function normalizeName(name: string): string {
+  return name.trim().toLowerCase();
+}
+
+function hasMatchAlreadyBeenPlayed(
+  matches: Match[],
+  participantAId: string,
+  participantBId: string,
+): boolean {
+  const nextMatchKey = matchKey(participantAId, participantBId);
+
+  return matches.some(
+    (match) => matchKey(match.participantAId, match.participantBId) === nextMatchKey,
+  );
+}
+
+function applyMatchResult(
+  participantAStats: ParticipantStats,
+  participantBStats: ParticipantStats,
+  scoreA: number,
+  scoreB: number,
+) {
+  participantAStats.matchesPlayed += 1;
+  participantBStats.matchesPlayed += 1;
+
+  if (scoreA > scoreB) {
+    participantAStats.wins += 1;
+    participantAStats.points += 3;
+    participantBStats.losses += 1;
+    return;
+  }
+
+  if (scoreB > scoreA) {
+    participantBStats.wins += 1;
+    participantBStats.points += 3;
+    participantAStats.losses += 1;
+    return;
+  }
+
+  participantAStats.draws += 1;
+  participantAStats.points += 1;
+  participantBStats.draws += 1;
+  participantBStats.points += 1;
+}
+
 const tournamentSlice = createSlice({
   name: "tournaments",
   initialState,
@@ -47,6 +96,16 @@ const tournamentSlice = createSlice({
       }>,
     ) => {
       const { tournamentType, participantName } = action.payload;
+      const tournament = state.tournaments[tournamentType];
+      const participantNameAlreadyExists = tournament.participants.some(
+        (participant) =>
+          normalizeName(participant.stats.name) === normalizeName(participantName),
+      );
+
+      if (!participantName.trim() || participantNameAlreadyExists) {
+        return;
+      }
+
       const participantId = crypto.randomUUID();
       const stats: ParticipantStats = participantStatsBuilder({
         participantId: participantId,
@@ -63,7 +122,7 @@ const tournamentSlice = createSlice({
         stats: stats,
       };
 
-      state.tournaments[tournamentType].participants.push(participant);
+      tournament.participants.push(participant);
     },
     addMatch: (
       state,
@@ -73,7 +132,34 @@ const tournamentSlice = createSlice({
       }>,
     ) => {
       const { tournamentType, match } = action.payload;
-      state.tournaments[tournamentType].matches.push(match);
+      const tournament = state.tournaments[tournamentType];
+      const participantA = tournament.participants.find(
+        (participant) => participant.id === match.participantAId,
+      );
+      const participantB = tournament.participants.find(
+        (participant) => participant.id === match.participantBId,
+      );
+
+      if (
+        !participantA ||
+        !participantB ||
+        participantA.id === participantB.id ||
+        hasMatchAlreadyBeenPlayed(
+          tournament.matches,
+          match.participantAId,
+          match.participantBId,
+        )
+      ) {
+        return;
+      }
+
+      tournament.matches.push(match);
+      applyMatchResult(
+        participantA.stats,
+        participantB.stats,
+        match.scoreA,
+        match.scoreB,
+      );
     },
   },
 });
