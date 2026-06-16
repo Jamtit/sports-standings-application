@@ -96,6 +96,7 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
           showDraws={tournamentData.showDraws}
           showMatches={tournamentData.showMatches}
           showWinLossIcon={tournamentData.showWinLossIcons}
+          showCountryFlags={tournamentData.showCountryFlags}
         />
       </div>
     </div>
