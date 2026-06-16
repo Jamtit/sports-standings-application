@@ -9,6 +9,7 @@ export type Tournament = {
   matches: Match[];
   showDraws: boolean;
   showMatches: boolean;
+  showWinLossIcons: boolean;
   isParticipantAPlayer: boolean;
   isAMatch: boolean;
   iconName: keyof typeof TOURNAMENT_ICONS | "";
