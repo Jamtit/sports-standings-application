@@ -77,6 +77,9 @@
         &__tick-icon {
           color: green;
           margin-left: map.get(vars.$spacing, "100");
+          vertical-align: middle;
+          position: relative;
+          bottom: 2px;
         }
       }
 
@@ -84,14 +87,10 @@
         &__x-icon {
           color: red;
           margin-left: map.get(vars.$spacing, "100");
+          vertical-align: middle;
+          position: relative;
+          bottom: 2px;
         }
-      }
-
-      &__win-column,
-      &__loss-column {
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
 
       &__empty {
