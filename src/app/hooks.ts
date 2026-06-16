@@ -1,20 +1,36 @@
 import type { RootState, AppDispatch } from "./store";
+import { createSelector } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import type { TournamentTypes } from "../features/tournaments/types/tournaments.types";
+import type {
+  Participant,
+  TournamentTypes,
+} from "../features/tournaments/types/tournaments.types";
 
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
 
+const EMPTY_PARTICIPANTS: Participant[] = [];
+
+const selectTournaments = (state: RootState) => state.tournaments.tournaments;
+
+const selectTournamentTypes = createSelector(
+  [selectTournaments],
+  (tournaments) => Object.keys(tournaments) as TournamentTypes[],
+);
+
+const selectTournamentByType = (
+  state: RootState,
+  tournamentType: TournamentTypes,
+) => state.tournaments.tournaments[tournamentType];
+
 export const useTournamentTypes = () => {
-  return useAppSelector(
-    (state) => Object.keys(state.tournaments.tournaments) as TournamentTypes[],
-  );
+  return useAppSelector(selectTournamentTypes);
 };
 
 export const useTournamentParticipants = (tournamentType: TournamentTypes) => {
   return useAppSelector(
-    (state) => state.tournaments.tournaments[tournamentType].participants,
+    (state) => selectTournamentByType(state, tournamentType).participants,
   );
 };
 
@@ -41,7 +57,7 @@ export const useSortedTournamentParticipants = (
 
 export const useTournamentMatches = (tournamentType: TournamentTypes) => {
   return useAppSelector(
-    (state) => state.tournaments.tournaments[tournamentType].matches,
+    (state) => selectTournamentByType(state, tournamentType).matches,
   );
 };
 
@@ -54,7 +70,7 @@ export const useAvailableOpponents = (
 
   return useMemo(() => {
     if (!participantId) {
-      return [];
+      return EMPTY_PARTICIPANTS;
     }
 
     const playedOpponentIds = new Set(
@@ -73,7 +89,8 @@ export const useAvailableOpponents = (
 
     return participants.filter(
       (participant) =>
-        participant.id !== participantId && !playedOpponentIds.has(participant.id),
+        participant.id !== participantId &&
+        !playedOpponentIds.has(participant.id),
     );
   }, [matches, participantId, participants]);
 };
