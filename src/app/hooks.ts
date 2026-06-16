@@ -61,6 +61,50 @@ export const useTournamentMatches = (tournamentType: TournamentTypes) => {
   );
 };
 
+export type RecentTournamentMatch = {
+  id: string;
+  participantA: Participant;
+  participantB: Participant;
+  scoreA: number;
+  scoreB: number;
+};
+
+export const useRecentTournamentMatches = (
+  tournamentType: TournamentTypes,
+  limit = 2,
+) => {
+  const participants = useTournamentParticipants(tournamentType);
+  const matches = useTournamentMatches(tournamentType);
+
+  return useMemo(() => {
+    const participantById = new Map(
+      participants.map((participant) => [participant.id, participant]),
+    );
+
+    return matches
+      .slice(-limit)
+      .reverse()
+      .flatMap((match) => {
+        const participantA = participantById.get(match.participantAId);
+        const participantB = participantById.get(match.participantBId);
+
+        if (!participantA || !participantB) {
+          return [];
+        }
+
+        return [
+          {
+            id: match.id,
+            participantA,
+            participantB,
+            scoreA: match.scoreA,
+            scoreB: match.scoreB,
+          },
+        ];
+      });
+  }, [limit, matches, participants]);
+};
+
 export const useAvailableOpponents = (
   tournamentType: TournamentTypes,
   participantId: string,
