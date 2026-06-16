@@ -1,13 +1,11 @@
+import { memo } from "react";
+import { useTournamentParticipants } from "../../../../app/hooks";
 import { TickIcon, XIcon } from "../../../../assets/icons";
-import type {
-  Participant,
-  TournamentTypes,
-} from "../../types/tournaments.types";
+import type { TournamentTypes } from "../../types/tournaments.types";
 import "./TournamentCardTable.scss";
 
 type TournamentCardTableProps = {
   tournamentType: TournamentTypes;
-  participantRows: Participant[];
   participantLabel: "Team" | "Player";
   playName: "P" | "M";
   showDraws?: boolean;
@@ -18,7 +16,6 @@ type TournamentCardTableProps = {
 
 function TournamentCardTable({
   tournamentType,
-  participantRows,
   playName,
   participantLabel,
   showDraws = true,
@@ -27,6 +24,7 @@ function TournamentCardTable({
   tableLabel,
 }: TournamentCardTableProps) {
   const columnCount: number = 4 + Number(showDraws) + Number(showMatches);
+  const participantRows = useTournamentParticipants(tournamentType);
 
   return (
     <div className="tournament-card-table">
@@ -81,16 +79,18 @@ function TournamentCardTable({
                   )}
                 </td>
                 <td>{participant.stats.points}</td>
-                {participantRows.length === 1 && (
-                  <td
-                    colSpan={columnCount}
-                    className={`tournament-card-table__table__body__empty tournament-card-table__table__body__empty--${tournamentType}`}
-                  >
-                    Add 1 more {participantLabel} to start adding score.
-                  </td>
-                )}
               </tr>
             ))
+          )}
+          {participantRows.length === 1 && (
+            <tr>
+              <td
+                colSpan={columnCount}
+                className={`tournament-card-table__table__body__empty tournament-card-table__table__body__empty--${tournamentType}`}
+              >
+                Add 1 more {participantLabel} to start adding scores.
+              </td>
+            </tr>
           )}
         </tbody>
       </table>
@@ -98,4 +98,4 @@ function TournamentCardTable({
   );
 }
 
-export default TournamentCardTable;
+export default memo(TournamentCardTable);

@@ -4,6 +4,7 @@ import type {
   Participant,
   Match,
   TournamentTypes,
+  ParticipantStats,
 } from "../types/tournaments.types";
 
 type TournamentState = {
@@ -14,6 +15,26 @@ const initialState: TournamentState = {
   tournaments: initialTournaments,
 };
 
+function participantStatsBuilder({
+  participantId,
+  name,
+  matchesPlayed,
+  wins,
+  losses,
+  draws,
+  points,
+}: ParticipantStats): ParticipantStats {
+  return {
+    participantId: participantId,
+    name: name,
+    matchesPlayed: matchesPlayed,
+    wins: wins,
+    losses: losses,
+    draws: draws,
+    points: points,
+  };
+}
+
 const tournamentSlice = createSlice({
   name: "tournaments",
   initialState,
@@ -22,10 +43,26 @@ const tournamentSlice = createSlice({
       state,
       action: PayloadAction<{
         tournamentType: TournamentTypes;
-        participant: Participant;
+        participantName: string;
       }>,
     ) => {
-      const { tournamentType, participant } = action.payload;
+      const { tournamentType, participantName } = action.payload;
+      const participantId = crypto.randomUUID();
+      const stats: ParticipantStats = participantStatsBuilder({
+        participantId: participantId,
+        name: participantName,
+        matchesPlayed: 0,
+        wins: 0,
+        losses: 0,
+        draws: 0,
+        points: 0,
+      });
+
+      const participant: Participant = {
+        id: participantId,
+        stats: stats,
+      };
+
       state.tournaments[tournamentType].participants.push(participant);
     },
     addMatch: (

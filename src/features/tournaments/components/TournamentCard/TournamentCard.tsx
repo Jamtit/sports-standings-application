@@ -43,6 +43,7 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
           <AddTeamForm
             tournamentType={tournamentType}
             participantLabel={participantLabel}
+            showForm={setShowAddTeamForm}
           />
         )}
 
@@ -50,7 +51,6 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
           <AddScoreForm
             tournamentType={tournamentType}
             participantLabel={participantLabel}
-            participants={tournamentData.participants}
           />
         )}
 
@@ -87,7 +87,6 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
 
         <TournamentCardTable
           tournamentType={tournamentType}
-          participantRows={tournamentData.participants}
           participantLabel={participantLabel}
           playName={playName}
           showDraws={tournamentData.showDraws}
