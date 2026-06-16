@@ -1,4 +1,7 @@
-import type { TournamentTypes } from "../types/tournaments.types";
+import type {
+  TournamentCountryMode,
+  TournamentTypes,
+} from "../types/tournaments.types";
 import Button from "../../../shared/components/Button";
 import Select from "../../../shared/components/Select";
 import "./AddTeamForm.scss";
@@ -11,13 +14,18 @@ import {
   isCountryCode,
   type CountryCode,
 } from "../../../shared/constants/countries";
+import {
+  isNationalTeamMode,
+  shouldShowParticipantNameInput,
+  usesCountries,
+} from "../utils/countryMode";
 
 type AddTeamFormProps = {
   tournamentType: TournamentTypes;
   participantLabel: "Player" | "Team";
   showForm: (value: boolean) => void;
   showActionForms: boolean;
-  showCountryFlags: boolean;
+  countryMode: TournamentCountryMode;
 };
 
 function AddTeamForm({
@@ -25,7 +33,7 @@ function AddTeamForm({
   participantLabel,
   showForm,
   showActionForms,
-  showCountryFlags,
+  countryMode,
 }: AddTeamFormProps) {
   const [participantName, setParticipantName] = useState<string>("");
   const [countryCode, setCountryCode] = useState<CountryCode | "">("");
@@ -35,16 +43,28 @@ function AddTeamForm({
     label: country.name,
     value: country.code,
   }));
+  const showCountrySelect = usesCountries(countryMode);
+  const showParticipantNameInput = shouldShowParticipantNameInput(countryMode);
+  const selectedCountry = COUNTRIES.find((country) => country.code === countryCode);
+  const isNationalTeam = isNationalTeamMode(countryMode);
 
   const formattedName = formatParticipantName(participantName);
+  const participantNameToSubmit = isNationalTeam
+    ? selectedCountry?.name ?? ""
+    : formattedName;
   const participantNameExists = participants.some(
     (participant) =>
-      participant.stats.name.toLowerCase() === formattedName.toLowerCase(),
+      participant.stats.name.toLowerCase() ===
+      participantNameToSubmit.toLowerCase(),
   );
-  const isCountryMissing = showCountryFlags && !countryCode;
+  const isCountryMissing = showCountrySelect && !countryCode;
 
+  const isParticipantNameMissing = !participantNameToSubmit;
   const isSubmitDisabled =
-    !formattedName || participantNameExists || isCountryMissing;
+    isParticipantNameMissing || participantNameExists || isCountryMissing;
+  const duplicateEntityLabel = isNationalTeam
+    ? "country"
+    : participantLabel.toLowerCase();
 
   const handleTeamSubmit: React.SubmitEventHandler<HTMLFormElement> = (
     event,
@@ -58,7 +78,7 @@ function AddTeamForm({
     dispatch(
       addParticipant({
         tournamentType,
-        participantName: formattedName,
+        participantName: participantNameToSubmit,
         country: countryCode || undefined,
       }),
     );
@@ -74,14 +94,21 @@ function AddTeamForm({
     <div className={`add-team add-team--${tournamentType}`}>
       <span className="add-team__label">Add {participantLabel}</span>
       <div>
-        <form onSubmit={handleTeamSubmit} className="add-team__input">
-          <input
-            className={`add-team__input__field add-team__input__field--${tournamentType}`}
-            placeholder={`${participantLabel} Name`}
-            value={participantName}
-            onChange={(event) => setParticipantName(event.target.value)}
-          ></input>
-          {showCountryFlags && (
+        <form
+          onSubmit={handleTeamSubmit}
+          className={`add-team__input ${
+            isNationalTeam ? "add-team__input--national-team" : ""
+          }`}
+        >
+          {showParticipantNameInput && (
+            <input
+              className={`add-team__input__field add-team__input__field--${tournamentType}`}
+              placeholder={`${participantLabel} Name`}
+              value={participantName}
+              onChange={(event) => setParticipantName(event.target.value)}
+            ></input>
+          )}
+          {showCountrySelect && (
             <Select
               id={`${tournamentType}-country`}
               selectSize="medium"
@@ -110,7 +137,7 @@ function AddTeamForm({
         </form>
         {participantNameExists && (
           <p className="add-team__error">
-            This {participantLabel.toLowerCase()} is already added.
+            This {duplicateEntityLabel} is already added.
           </p>
         )}
       </div>

@@ -34,10 +34,16 @@
     margin-block: map.get(vars.$spacing, "200");
     gap: map.get(vars.$spacing, "300");
 
-    &:has(.add-team__input__country) {
+    &:has(.add-team__input__country):not(.add-team__input--national-team) {
       grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) auto;
       grid-template-areas: "name country button";
       gap: map.get(vars.$spacing, "100");
+    }
+
+    &--national-team {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: "country button";
+      gap: map.get(vars.$spacing, "300");
     }
 
     &__field {
