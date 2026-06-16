@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../app/styles/variables" as vars;
-@use "../../app/styles/typography" as typo;
+@use "../../../app/styles/variables" as vars;
+@use "../../../app/styles/typography" as typo;
 
 .button {
   display: flex;

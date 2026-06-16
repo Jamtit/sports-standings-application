@@ -1,8 +1,8 @@
 @use "sass:map";
-@use "../../../app/styles/variables" as vars;
-@use "../styles/tournament-variables" as tournamentVars;
-@use "../../../app/styles/typography" as typo;
-@use "../../../app/styles/mixins" as mixins;
+@use "../../../../app/styles/variables" as vars;
+@use "../../styles/tournament-variables" as tournamentVars;
+@use "../../../../app/styles/typography" as typo;
+@use "../../../../app/styles/mixins" as mixins;
 
 .add-score {
   margin-block: map.get(vars.$spacing, "200");
