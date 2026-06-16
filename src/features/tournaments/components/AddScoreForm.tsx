@@ -88,7 +88,7 @@ function AddScoreForm({
       }),
     );
 
-    if (showActionForms) {
+    if (!showActionForms) {
       showForm(false);
     }
     setParticipantAId("");
