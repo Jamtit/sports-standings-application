@@ -1,0 +1,1 @@
+export { formatParticipantName } from "./formatParticipantName";

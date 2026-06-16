@@ -1,11 +1,11 @@
-import { useRecentTournamentMatches } from "../../../app/hooks";
-import FlagIcon from "../../../shared/components/FlagIcon";
-import { getCountryName } from "../../../shared/constants/countries";
+import { useRecentTournamentMatches } from "../../../../app/hooks";
+import FlagIcon from "../../../../shared/components/FlagIcon";
+import { getCountryName } from "../../../../shared/constants/countries";
 import type {
   TournamentCountryMode,
   TournamentTypes,
-} from "../types/tournaments.types";
-import { usesCountries } from "../utils/countryMode";
+} from "../../types/tournaments.types";
+import { usesCountries } from "../../utils/countryMode";
 import "./CurrentMatches.scss";
 
 type CurrentMatchesProps = {

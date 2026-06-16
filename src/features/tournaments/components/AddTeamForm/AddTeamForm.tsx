@@ -1,24 +1,27 @@
 import type {
   TournamentCountryMode,
   TournamentTypes,
-} from "../types/tournaments.types";
-import Button from "../../../shared/components/Button";
-import Select from "../../../shared/components/Select";
+} from "../../types/tournaments.types";
+import Button from "../../../../shared/components/Button";
+import Select from "../../../../shared/components/Select";
 import "./AddTeamForm.scss";
-import { useAppDispatch, useTournamentParticipants } from "../../../app/hooks";
-import { addParticipant } from "../store/tournamentSlice";
+import {
+  useAppDispatch,
+  useTournamentParticipants,
+} from "../../../../app/hooks";
+import { addParticipant } from "../../store/tournamentSlice";
 import { useState } from "react";
-import { formatParticipantName } from "../../../shared/utils/utils";
+import { formatParticipantName } from "../../../../shared/utils";
 import {
   COUNTRIES,
   isCountryCode,
   type CountryCode,
-} from "../../../shared/constants/countries";
+} from "../../../../shared/constants/countries";
 import {
   isNationalTeamMode,
   shouldShowParticipantNameInput,
   usesCountries,
-} from "../utils/countryMode";
+} from "../../utils/countryMode";
 
 type AddTeamFormProps = {
   tournamentType: TournamentTypes;
@@ -45,12 +48,14 @@ function AddTeamForm({
   }));
   const showCountrySelect = usesCountries(countryMode);
   const showParticipantNameInput = shouldShowParticipantNameInput(countryMode);
-  const selectedCountry = COUNTRIES.find((country) => country.code === countryCode);
+  const selectedCountry = COUNTRIES.find(
+    (country) => country.code === countryCode,
+  );
   const isNationalTeam = isNationalTeamMode(countryMode);
 
   const formattedName = formatParticipantName(participantName);
   const participantNameToSubmit = isNationalTeam
-    ? selectedCountry?.name ?? ""
+    ? (selectedCountry?.name ?? "")
     : formattedName;
   const participantNameExists = participants.some(
     (participant) =>
