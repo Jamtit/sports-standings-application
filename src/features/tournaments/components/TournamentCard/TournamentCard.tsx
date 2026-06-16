@@ -9,6 +9,7 @@ import CurrentMatches from "../CurrentMatches";
 import { useState } from "react";
 import Button from "../../../../shared/components/Button";
 import { PlusIcon } from "../../../../assets/icons";
+import { TOURNAMENT_STRINGS } from "../../constants/strings";
 
 type TournamentCardProps = {
   tournamentType: TournamentTypes;
@@ -29,8 +30,13 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
   );
 
   const participantLabel: "Player" | "Team" =
-    tournamentData.isParticipantAPlayer ? "Player" : "Team";
-  const playName: "M" | "P" = tournamentData.isAMatch ? "M" : "P";
+    tournamentData.isParticipantAPlayer
+      ? TOURNAMENT_STRINGS.tournamentCard.participantLabels.player
+      : TOURNAMENT_STRINGS.tournamentCard.participantLabels.team;
+
+  const playName: "M" | "P" = tournamentData.isAMatch
+    ? TOURNAMENT_STRINGS.tournamentCard.playLabels.match
+    : TOURNAMENT_STRINGS.tournamentCard.playLabels.play;
 
   return (
     <div className={`tournament-card tournament-card--${tournamentType}`}>
@@ -69,7 +75,9 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
                 className="tournament-card__body__no-forms__add-participant__icon"
                 size={14}
               />
-              Add {participantLabel}
+              {TOURNAMENT_STRINGS.tournamentCard.actions.addParticipant(
+                participantLabel,
+              )}
             </Button>
           )}
           {!showAddScoreForm && (
@@ -85,7 +93,7 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
                 className="tournament-card__body__no-forms__add-score__icon"
                 size={14}
               />
-              Add Score
+              {TOURNAMENT_STRINGS.tournamentCard.actions.addScore}
             </Button>
           )}
         </div>

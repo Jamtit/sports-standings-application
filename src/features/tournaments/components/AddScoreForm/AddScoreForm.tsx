@@ -9,6 +9,7 @@ import {
   useTournamentParticipants,
 } from "../../../../app/hooks";
 import { addMatch } from "../../store/tournamentSlice";
+import { TOURNAMENT_STRINGS } from "../../constants/strings";
 
 type AddScoreFormProps = {
   tournamentType: TournamentTypes;
@@ -99,13 +100,17 @@ function AddScoreForm({
 
   return (
     <div className={`add-score add-score--${tournamentType}`}>
-      <h4 className="add-score__label">Add Score</h4>
+      <h4 className="add-score__label">
+        {TOURNAMENT_STRINGS.addScoreForm.title}
+      </h4>
       <form className="add-score__container" onSubmit={handleScoreSubmit}>
         <div className="add-score__container__choices">
           <Select
             id="participant-a"
             selectSize="medium"
-            placeholder={`Home ${participantLabel}`}
+            placeholder={TOURNAMENT_STRINGS.addScoreForm.placeholders.homeParticipant(
+              participantLabel,
+            )}
             options={participantOptions}
             value={participantAId}
             onChange={(event) => {
@@ -116,7 +121,7 @@ function AddScoreForm({
           />
           <input
             className={`add-score__container__choices__input-a add-score__container__choices__input-a--${tournamentType}`}
-            placeholder="Home Score"
+            placeholder={TOURNAMENT_STRINGS.addScoreForm.placeholders.homeScore}
             inputMode="numeric"
             min={0}
             step={1}
@@ -127,7 +132,9 @@ function AddScoreForm({
           <Select
             id="participant-b"
             selectSize="medium"
-            placeholder={`Away ${participantLabel}`}
+            placeholder={TOURNAMENT_STRINGS.addScoreForm.placeholders.awayParticipant(
+              participantLabel,
+            )}
             options={secondParticipantOptions}
             value={selectedParticipantBId}
             onChange={(event) => setParticipantBId(event.target.value)}
@@ -136,7 +143,7 @@ function AddScoreForm({
           />
           <input
             className={`add-score__container__choices__input-b add-score__container__choices__input-b--${tournamentType}`}
-            placeholder="Away Score"
+            placeholder={TOURNAMENT_STRINGS.addScoreForm.placeholders.awayScore}
             inputMode="numeric"
             min={0}
             step={1}
@@ -147,8 +154,9 @@ function AddScoreForm({
         </div>
         {participantAId && secondParticipantOptions.length === 0 && (
           <p className="add-score__message">
-            This {participantLabel.toLowerCase()} has already played every
-            available opponent.
+            {TOURNAMENT_STRINGS.addScoreForm.messages.allOpponentsPlayed(
+              participantLabel,
+            )}
           </p>
         )}
         <Button
@@ -157,7 +165,7 @@ function AddScoreForm({
           type="submit"
           disabled={isSubmitDisabled}
         >
-          Add Score
+          {TOURNAMENT_STRINGS.addScoreForm.actions.submit}
         </Button>
       </form>
     </div>

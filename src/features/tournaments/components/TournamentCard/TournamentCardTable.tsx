@@ -9,6 +9,7 @@ import type {
 } from "../../types/tournaments.types";
 import { usesCountries } from "../../utils/countryMode";
 import "./TournamentCardTable.scss";
+import { TOURNAMENT_STRINGS } from "../../constants/strings";
 
 type TournamentCardTableProps = {
   tournamentType: TournamentTypes;
@@ -49,10 +50,12 @@ function TournamentCardTable({
           <tr>
             <th>{participantLabel}</th>
             {showMatches && <th>{playName}</th>}
-            <th>W</th>
-            {showDraws && <th>D</th>}
-            <th>L</th>
-            <th>Pts</th>
+            <th>{TOURNAMENT_STRINGS.tournamentCardTable.columns.wins}</th>
+            {showDraws && (
+              <th>{TOURNAMENT_STRINGS.tournamentCardTable.columns.draws}</th>
+            )}
+            <th>{TOURNAMENT_STRINGS.tournamentCardTable.columns.losses}</th>
+            <th>{TOURNAMENT_STRINGS.tournamentCardTable.columns.points}</th>
           </tr>
         </thead>
         <tbody
@@ -64,7 +67,9 @@ function TournamentCardTable({
                 colSpan={columnCount}
                 className={`tournament-card-table__table__body__empty tournament-card-table__table__body__empty--${tournamentType}`}
               >
-                No {participantLabel}s are added yet.
+                {TOURNAMENT_STRINGS.tournamentCardTable.messages.noParticipants(
+                  participantLabel,
+                )}
               </td>
             </tr>
           ) : (
@@ -114,7 +119,9 @@ function TournamentCardTable({
                 colSpan={columnCount}
                 className={`tournament-card-table__table__body__empty tournament-card-table__table__body__empty--${tournamentType}`}
               >
-                Add 1 more {participantLabel} to start adding scores.
+                {TOURNAMENT_STRINGS.tournamentCardTable.messages.addOneMoreParticipant(
+                  participantLabel,
+                )}
               </td>
             </tr>
           )}
