@@ -21,6 +21,8 @@ type TournamentCardTableProps = {
   tableLabel?: string;
 };
 
+const TABLE_ICON_SIZE: number = 14;
+
 function TournamentCardTable({
   tournamentType,
   playName,
@@ -81,12 +83,12 @@ function TournamentCardTable({
                   </span>
                 </td>
                 {showMatches && <td>{participant.stats.matchesPlayed}</td>}
-                <td className="tournamet-card-table__table__body__win-column">
+                <td className="tournament-card-table__table__body__win-column">
                   {participant.stats.wins}
                   {showWinLossIcon && (
                     <TickIcon
                       className="tournament-card-table__table__body__win-column__tick-icon"
-                      size={16}
+                      size={TABLE_ICON_SIZE}
                     />
                   )}
                 </td>
@@ -96,7 +98,7 @@ function TournamentCardTable({
                   {showWinLossIcon && (
                     <XIcon
                       className="tournament-card-table__table__body__loss-column__x-icon"
-                      size={16}
+                      size={TABLE_ICON_SIZE}
                     />
                   )}
                 </td>
