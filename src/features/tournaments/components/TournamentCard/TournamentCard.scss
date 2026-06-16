@@ -2,6 +2,7 @@
 @use "../../../../app/styles/variables" as vars;
 @use "../../../../app/styles/mixins" as mixins;
 @use "../../styles/tournament-variables" as tournamentVars;
+@use "../../../../app/styles/typography" as typo;
 
 .tournament-card {
   display: flex;
@@ -59,5 +60,52 @@
   &__body {
     padding-inline: map.get(vars.$spacing, "400");
     padding-block: map.get(vars.$spacing, "200");
+
+    &__no-forms {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas: "add-participant add-score";
+
+      justify-content: space-between;
+      align-items: center;
+
+      margin-block: map.get(vars.$spacing, "500");
+      gap: map.get(vars.$spacing, "900");
+
+      &__add-participant {
+        grid-area: add-participant;
+        padding-right: map.get(vars.$spacing, "400");
+        @each $type, $colors in tournamentVars.$tournament-colors {
+          &--#{$type} {
+            background-color: map.get($colors, "button");
+            color: map.get($colors, "button-text");
+          }
+        }
+      }
+
+      &__add-score {
+        grid-area: add-score;
+        @each $type, $colors in tournamentVars.$tournament-colors {
+          &--#{$type} {
+            background-color: map.get($colors, "accent");
+            color: map.get($colors, "button-text");
+          }
+        }
+      }
+
+      &__add-participant,
+      &__add-score {
+        justify-content: center;
+        align-items: center;
+
+        div {
+          font-size: map.get(typo.$font-size, "base");
+        }
+
+        &__icon {
+          margin-right: map.get(vars.$spacing, "200");
+        }
+      }
+    }
   }
 }

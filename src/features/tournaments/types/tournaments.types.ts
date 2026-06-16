@@ -7,12 +7,13 @@ export type Tournament = {
   name: string;
   participants: Participant[];
   matches: Match[];
+  iconName: keyof typeof TOURNAMENT_ICONS | "";
   showDraws: boolean;
   showMatches: boolean;
   showWinLossIcons: boolean;
+  showActionForms: boolean;
   isParticipantAPlayer: boolean;
   isAMatch: boolean;
-  iconName: keyof typeof TOURNAMENT_ICONS | "";
 };
 
 export type Match = {
