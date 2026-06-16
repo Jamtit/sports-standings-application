@@ -81,6 +81,14 @@ function TournamentCardTable({
                   )}
                 </td>
                 <td>{participant.stats.points}</td>
+                {participantRows.length === 1 && (
+                  <td
+                    colSpan={columnCount}
+                    className={`tournament-card-table__table__body__empty tournament-card-table__table__body__empty--${tournamentType}`}
+                  >
+                    Add 1 more {participantLabel} to start adding score.
+                  </td>
+                )}
               </tr>
             ))
           )}
