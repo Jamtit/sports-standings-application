@@ -5,6 +5,7 @@ import TournamentCardHeader from "./TournamentCardHeader";
 import TournamentCardTable from "./TournamentCardTable";
 import AddTeamForm from "../AddTeamForm";
 import AddScoreForm from "../AddScoreForm";
+import CurrentMatches from "../CurrentMatches";
 import { useState } from "react";
 import Button from "../../../../shared/components/Button";
 import { PlusIcon } from "../../../../assets/icons";
@@ -89,6 +90,13 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
           )}
         </div>
 
+        {tournamentData.showRecentMatches && (
+          <CurrentMatches
+            tournamentType={tournamentType}
+            countryMode={tournamentData.countryMode}
+          />
+        )}
+
         <TournamentCardTable
           tournamentType={tournamentType}
           participantLabel={participantLabel}
@@ -97,6 +105,7 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
           showMatches={tournamentData.showMatches}
           showWinLossIcon={tournamentData.showWinLossIcons}
           countryMode={tournamentData.countryMode}
+          tableLabel={tournamentData.tableLabel}
         />
       </div>
     </div>

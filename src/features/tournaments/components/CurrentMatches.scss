@@ -1,0 +1,59 @@
+@use "sass:map";
+@use "../../../app/styles/variables" as vars;
+@use "../../../app/styles/typography" as typo;
+@use "../styles/tournament-variables" as tournamentVars;
+
+.current-matches {
+  display: grid;
+  gap: map.get(vars.$spacing, "300");
+  margin-block: map.get(vars.$spacing, "900");
+  font-size: map.get(typo.$font-size, "md");
+
+  &__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: map.get(vars.$spacing, "300");
+    padding-bottom: map.get(vars.$spacing, "200");
+
+    @each $type, $colors in tournamentVars.$tournament-colors {
+      &--#{$type} {
+        border-bottom: 1px solid map.get($colors, "current-matches-divider");
+      }
+    }
+  }
+
+  &__row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &__participants {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: map.get(vars.$spacing, "200");
+  }
+
+  &__participant {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    gap: map.get(vars.$spacing, "100");
+    overflow-wrap: anywhere;
+  }
+
+  &__participant__flag {
+    flex: 0 0 auto;
+  }
+
+  &__versus {
+    flex: 0 0 auto;
+    opacity: 0.8;
+  }
+
+  &__score {
+    white-space: nowrap;
+    font-weight: map.get(typo.$font-weight, "bold");
+  }
+}
