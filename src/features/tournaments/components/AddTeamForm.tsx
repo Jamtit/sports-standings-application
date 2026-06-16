@@ -1,10 +1,7 @@
 import type { TournamentTypes } from "../types/tournaments.types";
 import Button from "../../../shared/components/Button";
 import "./AddTeamForm.scss";
-import {
-  useAppDispatch,
-  useTournamentParticipants,
-} from "../../../app/hooks";
+import { useAppDispatch, useTournamentParticipants } from "../../../app/hooks";
 import { addParticipant } from "../store/tournamentSlice";
 import { useState } from "react";
 import { formatParticipantName } from "../../../shared/utils/utils";
@@ -13,21 +10,25 @@ type AddTeamFormProps = {
   tournamentType: TournamentTypes;
   participantLabel: "Player" | "Team";
   showForm: (value: boolean) => void;
+  showActionForms: boolean;
 };
 
 function AddTeamForm({
   tournamentType,
   participantLabel,
   showForm,
+  showActionForms,
 }: AddTeamFormProps) {
   const [participantName, setParticipantName] = useState<string>("");
   const dispatch = useAppDispatch();
   const participants = useTournamentParticipants(tournamentType);
+
   const formattedName = formatParticipantName(participantName);
   const participantNameExists = participants.some(
     (participant) =>
       participant.stats.name.toLowerCase() === formattedName.toLowerCase(),
   );
+
   const isSubmitDisabled = !formattedName || participantNameExists;
 
   const handleTeamSubmit: React.SubmitEventHandler<HTMLFormElement> = (
@@ -46,7 +47,10 @@ function AddTeamForm({
       }),
     );
 
-    showForm(false);
+    if (!showActionForms) {
+      showForm(false);
+    }
+
     setParticipantName("");
   };
   return (
