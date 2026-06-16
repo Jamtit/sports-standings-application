@@ -1,3 +1,4 @@
+import { TickIcon, XIcon } from "../../../../assets/icons";
 import type {
   Participant,
   TournamentTypes,
@@ -11,6 +12,7 @@ type TournamentCardTableProps = {
   playName: "P" | "M";
   showDraws?: boolean;
   showMatches?: boolean;
+  showWinLossIcon?: boolean;
   tableLabel?: string;
 };
 
@@ -21,6 +23,7 @@ function TournamentCardTable({
   participantLabel,
   showDraws = true,
   showMatches = true,
+  showWinLossIcon = false,
   tableLabel,
 }: TournamentCardTableProps) {
   const columnCount: number = 4 + Number(showDraws) + Number(showMatches);
@@ -58,9 +61,25 @@ function TournamentCardTable({
               <tr key={participant.id}>
                 <td>{participant.stats.name}</td>
                 {showMatches && <td>{participant.stats.matchesPlayed}</td>}
-                <td>{participant.stats.wins}</td>
+                <td>
+                  {participant.stats.wins}
+                  {showWinLossIcon && (
+                    <TickIcon
+                      className="tournament-card-table__table__body__tick-icon"
+                      size={16}
+                    />
+                  )}
+                </td>
                 {showDraws && <td>{participant.stats.draws}</td>}
-                <td>{participant.stats.losses}</td>
+                <td>
+                  {participant.stats.losses}
+                  {showWinLossIcon && (
+                    <XIcon
+                      className="tournament-card-table__table__body__x-icon"
+                      size={16}
+                    />
+                  )}
+                </td>
                 <td>{participant.stats.points}</td>
               </tr>
             ))
