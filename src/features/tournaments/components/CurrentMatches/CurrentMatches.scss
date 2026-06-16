@@ -1,7 +1,7 @@
 @use "sass:map";
-@use "../../../app/styles/variables" as vars;
-@use "../../../app/styles/typography" as typo;
-@use "../styles/tournament-variables" as tournamentVars;
+@use "../../../../app/styles/variables" as vars;
+@use "../../../../app/styles/typography" as typo;
+@use "../../styles/tournament-variables" as tournamentVars;
 
 .current-matches {
   display: grid;
