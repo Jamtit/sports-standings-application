@@ -4,9 +4,12 @@
 @use "../../styles/tournament-variables" as tournamentVars;
 
 .tournament-card-table {
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  overflow: hidden;
-  margin-bottom: map.get(vars.$spacing, "800");
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 0;
 
   &__participant {
     display: inline-flex;
@@ -47,6 +50,12 @@
     }
 
     &__header {
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
       @each $type, $colors in tournamentVars.$tournament-colors {
         &--#{$type} {
           th {

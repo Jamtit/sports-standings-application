@@ -79,9 +79,9 @@ $tournament-typography: (
 );
 
 $tournament-card-sizes: (
-  "max-width-sm": 400px,
-  "max-width-md": 800px,
-  "height-sm": 85dvh,
-  "height-md": 70dvh,
-  "min-height-lg": 520px,
+  "max-width-sm": 420px,
+  "max-width-md": 720px,
+  "height-sm": min(760px, calc(100dvh - 80px)),
+  "height-md": min(760px, calc(100dvh - 100px)),
+  "height-lg": min(760px, calc(100dvh - 140px)),
 );

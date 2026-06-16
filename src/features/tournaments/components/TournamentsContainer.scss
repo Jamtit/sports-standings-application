@@ -29,7 +29,7 @@
     width: 100%;
     min-height: 100dvh;
 
-    padding: map.get(vars.$spacing, "700");
+    padding: map.get(vars.$page-padding, "sm");
 
     scroll-snap-align: start;
     scroll-snap-stop: always;
