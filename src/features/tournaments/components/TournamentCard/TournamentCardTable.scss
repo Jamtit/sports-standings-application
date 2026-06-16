@@ -56,6 +56,19 @@
         }
       }
 
+      &__tick-icon {
+        color: green;
+      }
+
+      &__x-icon {
+        color: red;
+      }
+
+      &__tick-icon,
+      &__x-icon {
+        margin-left: map.get(vars.$spacing, "100");
+      }
+
       &__empty {
         padding: map.get(vars.$spacing, "300");
 

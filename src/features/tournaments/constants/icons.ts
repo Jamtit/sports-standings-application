@@ -1,5 +1,8 @@
-import { BasketballIcon, PlusIcon } from "../../../assets/icons";
-import { TennisBallIcon } from "../../../assets/icons/TennisBallIcon";
+import {
+  BasketballIcon,
+  PlusIcon,
+  TennisBallIcon,
+} from "../../../assets/icons";
 
 export const TOURNAMENT_ICONS = {
   plus: PlusIcon,
