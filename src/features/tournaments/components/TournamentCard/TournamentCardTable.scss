@@ -5,11 +5,12 @@
 
 .tournament-card-table {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: auto;
 
   &__table {
     table-layout: fixed;
     width: 100%;
+    min-width: 360px;
     border-collapse: collapse;
     font-size: map.get(typo.$font-size, "md");
 
@@ -23,6 +24,7 @@
     td:first-child:not(&__body__empty) {
       width: 45%;
       text-align: left;
+      overflow-wrap: anywhere;
     }
 
     th {

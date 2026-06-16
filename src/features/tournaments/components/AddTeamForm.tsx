@@ -1,7 +1,10 @@
 import type { TournamentTypes } from "../types/tournaments.types";
 import Button from "../../../shared/components/Button";
 import "./AddTeamForm.scss";
-import { useAppDispatch } from "../../../app/hooks";
+import {
+  useAppDispatch,
+  useTournamentParticipants,
+} from "../../../app/hooks";
 import { addParticipant } from "../store/tournamentSlice";
 import { useState } from "react";
 import { formatParticipantName } from "../../../shared/utils/utils";
@@ -19,12 +22,22 @@ function AddTeamForm({
 }: AddTeamFormProps) {
   const [participantName, setParticipantName] = useState<string>("");
   const dispatch = useAppDispatch();
+  const participants = useTournamentParticipants(tournamentType);
+  const formattedName = formatParticipantName(participantName);
+  const participantNameExists = participants.some(
+    (participant) =>
+      participant.stats.name.toLowerCase() === formattedName.toLowerCase(),
+  );
+  const isSubmitDisabled = !formattedName || participantNameExists;
 
   const handleTeamSubmit: React.SubmitEventHandler<HTMLFormElement> = (
     event,
   ) => {
     event.preventDefault();
-    const formattedName = formatParticipantName(participantName);
+
+    if (isSubmitDisabled) {
+      return;
+    }
 
     dispatch(
       addParticipant({
@@ -52,10 +65,16 @@ function AddTeamForm({
             size="medium"
             variant="accent"
             type="submit"
+            disabled={isSubmitDisabled}
           >
             Add
           </Button>
         </form>
+        {participantNameExists && (
+          <p className="add-team__error">
+            This {participantLabel.toLowerCase()} is already added.
+          </p>
+        )}
       </div>
     </div>
   );
