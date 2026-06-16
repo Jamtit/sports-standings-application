@@ -35,8 +35,9 @@
     gap: map.get(vars.$spacing, "300");
 
     &:has(.add-team__input__country) {
-      grid-template-columns: minmax(0, 1fr) minmax(120px, 160px) auto;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) auto;
       grid-template-areas: "name country button";
+      gap: map.get(vars.$spacing, "100");
     }
 
     &__field {
@@ -62,6 +63,16 @@
 
     &__country {
       grid-area: country;
+
+      @each $type, $colors in tournamentVars.$tournament-colors {
+        &--#{$type} {
+          select {
+            background-color: map.get($colors, "table-header");
+            color: map.get($colors, "table-text");
+            border: 2px solid map.get($colors, "input-border");
+          }
+        }
+      }
     }
 
     &__button {
