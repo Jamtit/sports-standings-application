@@ -3,7 +3,11 @@ import { useSortedTournamentParticipants } from "../../../../app/hooks";
 import { TickIcon, XIcon } from "../../../../assets/icons";
 import FlagIcon from "../../../../shared/components/FlagIcon";
 import { getCountryName } from "../../../../shared/constants/countries";
-import type { TournamentTypes } from "../../types/tournaments.types";
+import type {
+  TournamentCountryMode,
+  TournamentTypes,
+} from "../../types/tournaments.types";
+import { usesCountries } from "../../utils/countryMode";
 import "./TournamentCardTable.scss";
 
 type TournamentCardTableProps = {
@@ -13,7 +17,7 @@ type TournamentCardTableProps = {
   showDraws?: boolean;
   showMatches?: boolean;
   showWinLossIcon?: boolean;
-  showCountryFlags?: boolean;
+  countryMode: TournamentCountryMode;
   tableLabel?: string;
 };
 
@@ -24,11 +28,12 @@ function TournamentCardTable({
   showDraws = true,
   showMatches = true,
   showWinLossIcon = false,
-  showCountryFlags = false,
+  countryMode,
   tableLabel,
 }: TournamentCardTableProps) {
   const columnCount: number = 4 + Number(showDraws) + Number(showMatches);
   const participantRows = useSortedTournamentParticipants(tournamentType);
+  const showParticipantFlags = usesCountries(countryMode);
 
   return (
     <div className="tournament-card-table">
@@ -63,7 +68,7 @@ function TournamentCardTable({
               <tr key={participant.id}>
                 <td>
                   <span className="tournament-card-table__participant">
-                    {showCountryFlags && participant.country && (
+                    {showParticipantFlags && participant.country && (
                       <FlagIcon
                         className="tournament-card-table__participant__flag"
                         code={participant.country}

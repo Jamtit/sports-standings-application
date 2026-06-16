@@ -2,6 +2,7 @@ import type { TOURNAMENT_ICONS } from "../constants/icons";
 import type { CountryCode } from "../../../shared/constants/countries";
 
 export type TournamentTypes = "premier-league" | "eurobasket" | "wimbledon";
+export type TournamentCountryMode = "none" | "participant-country" | "national-team";
 
 export type Tournament = {
   type: TournamentTypes;
@@ -13,7 +14,7 @@ export type Tournament = {
   showMatches: boolean;
   showWinLossIcons: boolean;
   showActionForms: boolean;
-  showCountryFlags: boolean;
+  countryMode: TournamentCountryMode;
   isParticipantAPlayer: boolean;
   isAMatch: boolean;
 };
