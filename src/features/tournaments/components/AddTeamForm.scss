@@ -20,6 +20,12 @@
     font-weight: map.get(typo.$font-weight, "semi-bold");
   }
 
+  &__error {
+    margin: 0;
+    font-size: map.get(typo.$font-size, "sm");
+    line-height: map.get(typo.$line-height, "normal");
+  }
+
   &__input {
     display: flex;
     justify-content: center;

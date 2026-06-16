@@ -65,7 +65,7 @@
     padding: map.get(vars.$page-padding, "xl");
   }
 
-  @include mixins.respond-to("xxl") {
+  @include mixins.respond-to("2xl") {
     padding: map.get(vars.$page-padding, "xl");
   }
 }

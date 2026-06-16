@@ -91,6 +91,7 @@ function TournamentCard({ tournamentType }: TournamentCardProps) {
           playName={playName}
           showDraws={tournamentData.showDraws}
           showMatches={tournamentData.showMatches}
+          showWinLossIcon={tournamentData.showWinLossIcons}
         />
       </div>
     </div>

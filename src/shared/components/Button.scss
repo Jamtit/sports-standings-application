@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   gap: map.get(vars.$spacing, "200");
+  min-width: 0;
 
   border: none;
   border-radius: map.get(vars.$radius, "200");
@@ -45,6 +46,9 @@
   }
 
   &__label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 

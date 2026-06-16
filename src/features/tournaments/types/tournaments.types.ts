@@ -18,8 +18,8 @@ export type Tournament = {
 
 export type Match = {
   id: string;
-  participantA: Participant["stats"]["name"];
-  participantB: Participant["stats"]["name"];
+  participantAId: Participant["id"];
+  participantBId: Participant["id"];
   scoreA: number;
   scoreB: number;
 };

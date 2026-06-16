@@ -58,6 +58,11 @@
   }
 
   &__body {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow-y: auto;
+
     padding-inline: map.get(vars.$spacing, "400");
     padding-block: map.get(vars.$spacing, "200");
 
@@ -97,6 +102,7 @@
       &__add-score {
         justify-content: center;
         align-items: center;
+        min-width: 0;
 
         div {
           font-size: map.get(typo.$font-size, "base");
