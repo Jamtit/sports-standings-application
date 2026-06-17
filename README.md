@@ -1,6 +1,6 @@
 # Sports Standings Application
 
-Application URL:
+Application URL: https://jamtit.github.io/sports-standings-application/
 
 ## Summary
 
